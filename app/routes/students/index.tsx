@@ -10,18 +10,32 @@ export const loader = async () => {
 
 const StudentView = () => {
   const allStudents = useLoaderData<typeof loader>();
-  console.log(allStudents);
   return (
-    <div>
-      <h1>All student should be here</h1>
-      {allStudents.map((student: StudentRecord) => {
-        return (
-          <div key={student.id}>
-            <p>{student.first_name}</p>
-            <p>{student.last_name}</p>
-          </div>
-        );
-      })}
+    <div className="overflow-x-auto">
+      <h1 className="text-xl">Students</h1>
+      <table className="table table-xs">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birthdate</th>
+            <th>Teacher</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allStudents.map((student: StudentRecord) => {
+            return (
+              <tr key={student.id}>
+                <td>{student.id}</td>
+                <td>{student.first_name}</td>
+                <td>{student.last_name}</td>
+                <td>{student.birthdate}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 };
